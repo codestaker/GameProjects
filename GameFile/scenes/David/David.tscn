@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://movement(idle.run,jump).tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/David/David.gd" type="Script" id=2]
+[ext_resource path="res://David assets/soundsandmusic(1)/sounds/jump1.ogg" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.4055, 60.9413 )
+
+[node name="David" type="KinematicBody2D"]
+position = Vector2( 15.0449, 420.707 )
+rotation = 0.0105939
+scale = Vector2( 0.457527, 0.299974 )
+collision_mask = 30
+script = ExtResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+visible = false
+position = Vector2( 39.875, 56 )
+scale = Vector2( 1e-05, 1e-05 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 57.1015, 66.7901 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 57.2747, 80.2007 )
+scale = Vector2( 0.313951, 0.299074 )
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 6
+playing = true
+flip_h = true
+
+[node name="SoundJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+pitch_scale = 1.2

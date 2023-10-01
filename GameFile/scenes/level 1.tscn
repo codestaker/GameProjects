@@ -1,0 +1,377 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/David/David.tscn" type="PackedScene" id=1]
+[ext_resource path="res://David assets/background assets/2.png" type="Texture" id=2]
+[ext_resource path="res://David assets/tilemaps/tileset5.png" type="Texture" id=3]
+[ext_resource path="res://David assets/soundsandmusic(1)/music/Swinging Pants.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://David assets/Platformer12-HUD-coin-font (1)/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://David assets/Odibee_Sans/OdibeeSans-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://David assets/Platformer12-HUD-coin-font (1)/HUD/coin_gold.png" type="Texture" id=11]
+[ext_resource path="res://scenes/HUD.gd" type="Script" id=12]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7572.6, 71.2572 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.32549 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 52
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 10 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 210, 80, 0, 80, 0, 0, 210, 0 )
+
+[sub_resource type="TileSet" id=7]
+0/name = "tileset5.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 406, 304, 210, 80 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 6 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="level 1" type="Node2D"]
+position = Vector2( -12.9653, 83.9402 )
+scale = Vector2( 0.983777, 0.908235 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="dark hour" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1500, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/dark hour"]
+position = Vector2( -93.4673, 20.6307 )
+scale = Vector2( 1.17271, 1.108 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -2.51978, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 7439.45, 772.229 )
+scale = Vector2( 0.993735, 1 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 1513.67, 586.885 )
+scale = Vector2( 3.95006, 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 12 )
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_left = 3.36359
+margin_top = 4.20448
+margin_right = 43.3636
+margin_bottom = 44.2045
+rect_scale = Vector2( 5.40813, 2.09606 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+margin_left = 13.4543
+margin_top = 15.977
+margin_right = 74.4543
+margin_bottom = 76.977
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="Label" parent="HUD"]
+margin_left = 85.2774
+margin_top = -1.34908
+margin_right = 125.277
+margin_bottom = 58.6509
+rect_scale = Vector2( 1.62651, 1.46388 )
+custom_colors/font_color = Color( 1, 0.8, 0.113725, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Label" parent="HUD"]
+margin_left = 125.151
+margin_top = 19.3934
+margin_right = 165.151
+margin_bottom = 75.3934
+rect_scale = Vector2( 0.973428, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "$$"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin" type="Node2D" parent="."]
+position = Vector2( 185.202, 17.2403 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin2" type="Node2D" parent="."]
+position = Vector2( 761.249, 193.767 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin2" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin3" type="Node2D" parent="."]
+position = Vector2( 1116.24, -4.37747 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin3" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin4" type="Node2D" parent="."]
+position = Vector2( 1486.59, -13.5453 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin4" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin5" type="Node2D" parent="."]
+position = Vector2( 1651.27, 256.763 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin5" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin11" type="Node2D" parent="."]
+position = Vector2( 1697.21, 138.921 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin11" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin13" type="Node2D" parent="."]
+position = Vector2( 1829.46, -278.383 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin13" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin12" type="Node2D" parent="."]
+position = Vector2( 2287.11, -319.356 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin12" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin6" type="Node2D" parent="."]
+position = Vector2( 2025.51, -136.244 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin6" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin7" type="Node2D" parent="."]
+position = Vector2( 2632.95, 11.2945 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin7" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin8" type="Node2D" parent="."]
+position = Vector2( 4053.56, -246.105 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin8" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin9" type="Node2D" parent="."]
+position = Vector2( 3016.77, 226.836 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin9" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="coin10" type="Node2D" parent="."]
+position = Vector2( 2732.98, -276.83 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="coin1" parent="coin10" instance=ExtResource( 8 )]
+position = Vector2( 753.937, 420.084 )
+scale = Vector2( 0.991066, 1.02626 )
+
+[node name="enemies" type="Node2D" parent="."]
+position = Vector2( -2.51978, 24.4749 )
+scale = Vector2( 0.979001, 0.96441 )
+
+[node name="enemy3" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 1321.01, 642.911 )
+
+[node name="enemy4" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 1853.78, 410.537 )
+
+[node name="enemy7" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2322.04, 420.801 )
+
+[node name="enemy8" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2704.56, 291.265 )
+
+[node name="enemy9" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2980.75, 291.265 )
+
+[node name="enemy10" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 3388.22, 298.885 )
+
+[node name="enemy11" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 3578.34, 417.42 )
+
+[node name="enemy16" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 3343.4, 685.438 )
+
+[node name="enemy19" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 4066.32, 639.357 )
+
+[node name="enemy20" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 4321.82, 384.256 )
+
+[node name="enemy18" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2964.99, 680.6 )
+
+[node name="enemy12" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 3782.95, 288.615 )
+
+[node name="enemy13" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 5229.65, 384.563 )
+
+[node name="enemy14" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 4644.16, 257.852 )
+
+[node name="enemy5" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 844.103, 655.959 )
+
+[node name="enemy6" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 1813.24, 626.963 )
+
+[node name="enemy15" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2181.72, 670.067 )
+
+[node name="enemy17" parent="enemies" instance=ExtResource( 13 )]
+position = Vector2( 2326.76, 679.128 )
+
+[node name="enemy2" parent="enemies" instance=ExtResource( 13 )]
+visible = false
+position = Vector2( 2029.81, 523.042 )
+direction = 1
+
+[node name="David" parent="." instance=ExtResource( 1 )]
+position = Vector2( 42.8236, 0.0160065 )
+scale = Vector2( 1.09366, 0.717048 )
+
+[node name="Camera2D" type="Camera2D" parent="David"]
+position = Vector2( -62.1963, -129.873 )
+scale = Vector2( 5.73978, 1.38848 )
+current = true
+limit_left = -32
+limit_top = 122
+limit_right = 6178
+limit_bottom = 718
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.3
+drag_margin_right = 0.3
+editor_draw_limits = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 7 )
+format = 1
+tile_data = PoolIntArray( -131074, -1073741824, 0, -196510, -1610612736, 0, -65538, -1073741824, 0, -130974, -1610612736, 0, 65534, -1073741824, 0, 131070, -1073741824, 0, 65634, -1610612736, 0, 196706, -1610612736, 0, 327678, -1073741824, 0, 393214, -1073741824, 0, 327720, 0, 0, 327723, 0, 0, 327726, 0, 0, 327729, 0, 0, 327737, 0, 0, 327750, 0, 0, 393314, -1610612736, 0, 524286, -1073741824, 0, 458779, 0, 0, 458786, 0, 0, 458805, 0, 0, 458817, 0, 0, 458831, 0, 0, 524386, -1610612736, 0, 720894, -1073741824, 0, 655379, 0, 0, 655382, 0, 0, 655385, 0, 0, 655398, 0, 0 )
+
+[node name="SoundGameLaunch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[connection signal="body_entered" from="coin/coin1" to="coin/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin2/coin1" to="coin2/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin2/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin3/coin1" to="coin3/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin3/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin4/coin1" to="coin4/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin4/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin5/coin1" to="coin5/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin5/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin11/coin1" to="coin11/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin11/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin13/coin1" to="coin13/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin13/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin12/coin1" to="coin12/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin12/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin6/coin1" to="coin6/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin6/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin7/coin1" to="coin7/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin7/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin8/coin1" to="coin8/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin8/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin9/coin1" to="coin9/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin9/coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="coin10/coin1" to="coin10/coin1" method="_on_coin_body_entered"]
+[connection signal="coin_collected" from="coin10/coin1" to="HUD" method="_on_coin_collected"]
